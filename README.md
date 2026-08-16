@@ -25,7 +25,13 @@ An end-to-end credit risk analysis and default prediction model built on the Hom
 - **Optimal risk cutoff: 18.18%**
 - **Expected profit at optimal threshold: 7.18 billion KZT on the held-out test set**
 
+   <img width="929" height="555" alt="image" src="https://github.com/user-attachments/assets/5c799741-38b9-4b9a-be55-4112e6537526" />
+
+
 **Interpretability:** SHAP values used to identify which features drive risk both globally (across the population) and locally (for individual applicants).
+
+   <img width="809" height="541" alt="image" src="https://github.com/user-attachments/assets/7619167b-b114-4388-abd7-9b5dd9fc59ba" />
+
 
 ## 🔍 Methodology
 
@@ -38,8 +44,14 @@ The analysis follows a deliberate, defensible sequence:
 5. **Baseline model** — LightGBM with `class_weight='balanced'`, three-way split (train 65% / validation 16% / test 20%) to keep early stopping and final evaluation fully separated
 6. **Stability check** — Stratified 5-Fold Cross-Validation on the train+validation portion to confirm the reported ROC-AUC generalizes beyond a single split, rather than trusting one train/test partition alone
 7. **Calibration** — Brier score + reliability curve diagnosis, isotonic regression fit on the validation set only
-8. **Interpretability** — SHAP TreeExplainer for global and local feature attribution
-9. **Profit curve** — calibrated probabilities converted into a threshold-vs-profit simulation under explicit business assumptions (average loan size, interest margin, loss-given-default)
+
+   <p align="center">
+  <img src="https://github.com/user-attachments/assets/45d781dc-8643-47e9-846e-ec422a9a28ce" width="45%" />
+  <img src="https://github.com/user-attachments/assets/7604e90b-a7b3-41f5-8537-e8b94a659e18" width="45%" />
+</p>
+
+9. **Interpretability** — SHAP TreeExplainer for global and local feature attribution
+10. **Profit curve** — calibrated probabilities converted into a threshold-vs-profit simulation under explicit business assumptions (average loan size, interest margin, loss-given-default)
 
 
 ## ⚠️ Known Limitations
