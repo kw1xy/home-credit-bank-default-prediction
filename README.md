@@ -96,6 +96,10 @@ The analysis follows a deliberate, defensible sequence:
 This project uses the publicly available [Home Credit Default Risk](https://www.kaggle.com/c/home-credit-default-risk) dataset from Kaggle. Home Credit is a consumer lender operating across several markets, including Kazakhstan. While the dataset is global, the modeling approach (probability calibration, profit curve in KZT, regulatory-style validation) mirrors the workflow used in Kazakhstani retail banking.
 
 ## 👤 Aldiyar Zhakupov
+- **LinkedIn:** [linkedin.com/in/aldiyar-zhakupov-6a7153383](https://www.linkedin.com/in/aldiyar-zhakupov-6a7153383)
+- **GitHub:** [github.com/kw1xy](https://github.com/kw1xy)
+- **Email:** [aldiarzakupov8@gmail.com](mailto:aldiarzakupov8@gmail.com)
+
 
 Data Science student, Corvinus University of Budapest — building this as part of a portfolio focused on financial risk modeling for the Kazakhstani market.
 
