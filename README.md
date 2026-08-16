@@ -50,8 +50,8 @@ The analysis follows a deliberate, defensible sequence:
   <img src="https://github.com/user-attachments/assets/7604e90b-a7b3-41f5-8537-e8b94a659e18" width="45%" />
 </p>
 
-9. **Interpretability** — SHAP TreeExplainer for global and local feature attribution
-10. **Profit curve** — calibrated probabilities converted into a threshold-vs-profit simulation under explicit business assumptions (average loan size, interest margin, loss-given-default)
+8. **Interpretability** — SHAP TreeExplainer for global and local feature attribution
+9. **Profit curve** — calibrated probabilities converted into a threshold-vs-profit simulation under explicit business assumptions (average loan size, interest margin, loss-given-default)
 
 
 ## ⚠️ Known Limitations
