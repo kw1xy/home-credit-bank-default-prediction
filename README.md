@@ -28,7 +28,7 @@ An end-to-end credit risk analysis and default prediction model built on the Hom
    <img width="929" height="555" alt="image" src="https://github.com/user-attachments/assets/5c799741-38b9-4b9a-be55-4112e6537526" />
 
 
-**Interpretability:** SHAP values used to identify which features drive risk both globally (across the population) and locally (for individual applicants).
+- **Interpretability:** SHAP values used to identify which features drive risk both globally (across the population) and locally (for individual applicants).
 
    <img width="809" height="541" alt="image" src="https://github.com/user-attachments/assets/7619167b-b114-4388-abd7-9b5dd9fc59ba" />
 
