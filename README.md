@@ -16,14 +16,14 @@ An end-to-end credit risk analysis and default prediction model built on the Hom
 - **ROC-AUC (test set): 0.762**
 
 **Stability check (Cross-Validation):** a single train/test split can produce a misleadingly optimistic or pessimistic score. To confirm the result wasn't an artifact of one particular split, the model was re-evaluated using Stratified 5-Fold Cross-Validation.
-- **Mean ROC-AUC: 0.762 ± 0.004** across folds — confirms the model's performance is stable, not a product of a lucky split
+- **Mean ROC-AUC: 0.7562 ± 0.004** across folds — confirms the model's performance is stable, not a product of a lucky split
 
 **Calibration:** raw model probabilities were poorly calibrated (Brier Score = 0.189) as a side effect of class balancing. Applying isotonic regression improved calibration substantially:
 - **Brier Score: 0.189 → 0.068**
 
 **Business translation (Profit Curve):** calibrated probabilities were used to simulate lending outcomes across a range of risk thresholds, converting model output into expected profit in tenge.
 - **Optimal risk cutoff: 18.18%**
-- Maximizes expected profit on the held-out test set under stated business assumptions
+- **Expected profit at optimal threshold: 7.18 billion KZT on the held-out test set**
 
 **Interpretability:** SHAP values used to identify which features drive risk both globally (across the population) and locally (for individual applicants).
 
@@ -61,16 +61,6 @@ The analysis follows a deliberate, defensible sequence:
 - **Calibration:** scikit-learn (`CalibratedClassifierCV`, isotonic regression)
 - **Interpretability:** SHAP
 
-## 📁 Repository Structure
-
-```
-.
-├── README.md
-├── requirements.txt
-├── notebooks/
-│   └── home_credit_default_risk_analysis.ipynb
-└── .gitignore
-```
 
 ## 🚀 Running the Project
 
@@ -81,9 +71,9 @@ The analysis follows a deliberate, defensible sequence:
 
 ## 📌 Data Source
 
-This project uses the publicly available [Home Credit Default Risk](https://www.kaggle.com/c/home-credit-default-risk) dataset from Kaggle. Home Credit is a consumer lender operating across several markets, including Kazakhstan. No proprietary or region-specific data was used — all analysis and modeling decisions are based on this open dataset.
+This project uses the publicly available [Home Credit Default Risk](https://www.kaggle.com/c/home-credit-default-risk) dataset from Kaggle. Home Credit is a consumer lender operating across several markets, including Kazakhstan. While the dataset is global, the modeling approach (probability calibration, profit curve in KZT, regulatory-style validation) mirrors the workflow used in Kazakhstani retail banking.
 
-## 👤 Author
+## 👤 Aldiyar Zhakupov
 
 Data Science student, Corvinus University of Budapest — building this as part of a portfolio focused on financial risk modeling for the Kazakhstani market.
 
