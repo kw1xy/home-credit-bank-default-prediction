@@ -68,7 +68,7 @@ The analysis follows a deliberate, defensible sequence:
 | Metric | Value |
 |---|---|
 | ROC-AUC (test set) | 0.762 |
-| ROC-AUC (5-fold CV, mean ± std) | 0.762 ± 0.004 |
+| ROC-AUC (5-fold CV, mean ± std) | 0.7562 ± 0.004 |
 | Brier Score (uncalibrated) | 0.189 |
 | Brier Score (calibrated, isotonic) | 0.068 |
 | Optimal decision threshold | 18.18% predicted risk |
