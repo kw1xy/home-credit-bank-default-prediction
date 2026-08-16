@@ -41,6 +41,16 @@ The analysis follows a deliberate, defensible sequence:
 8. **Interpretability** — SHAP TreeExplainer for global and local feature attribution
 9. **Profit curve** — calibrated probabilities converted into a threshold-vs-profit simulation under explicit business assumptions (average loan size, interest margin, loss-given-default)
 
+
+## ⚠️ Known Limitations
+- One-Hot Encoding is applied before the train/test split for baseline simplicity. 
+  In a production pipeline, this would be wrapped in `sklearn.pipeline.Pipeline` 
+  with `fit` on train and `transform` on test to prevent data leakage.
+- Profit Curve uses an average loan amount; individual `AMT_CREDIT` per applicant 
+  would give a more precise business estimate.
+- No hyperparameter tuning (Optuna / Grid Search) — planned for v2.
+
+  
 ## 📊 Results at a Glance
 
 | Metric | Value |
