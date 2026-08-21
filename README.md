@@ -41,8 +41,8 @@ The analysis follows a deliberate, defensible sequence:
 2. **Anomaly detection** — percentile-based scan across all numeric columns to catch masked placeholders and extreme outliers, replacing them with `NaN` rather than dropping rows outright
 3. **Statistical validation** — t-test + Cohen's d for numeric predictors (age), chi-square + Cramér's V for categorical predictors (gender), always pairing significance with effect size rather than relying on p-values alone at large sample sizes
 4. **Feature engineering** — debt-to-income and annuity-to-income ratios, employment-to-age ratio; raw financial columns showed weak separation between classes, engineered ratios carry more signal
-5. **Baseline model** — LightGBM with `class_weight='balanced'`, three-way split (train 65% / validation 16% / test 20%) to keep early stopping and final evaluation fully separated
-6. **Stability check** — Stratified 5-Fold Cross-Validation on the train+validation portion to confirm the reported ROC-AUC generalizes beyond a single split, rather than trusting one train/test partition alone
+5. **Baseline model** — LightGBM with `class_weight='balanced'` and native categorical feature handling (category dtype), three-way split (train 65% / validation 16% / test 20%) with preprocessing applied strictly after splitting to prevent data leakage
+6. **Stability check** — Stratified 5-Fold Cross-Validation with identical preprocessing (native categorical handling, no OHE) applied independently within each fold to ensure unbiased performance estimation
 7. **Calibration** — Brier score + reliability curve diagnosis, isotonic regression fit on the validation set only
 
    <p align="center">
@@ -55,11 +55,8 @@ The analysis follows a deliberate, defensible sequence:
 
 
 ## ⚠️ Known Limitations
-- One-Hot Encoding is applied before the train/test split for baseline simplicity. 
-  In a production pipeline, this would be wrapped in `sklearn.pipeline.Pipeline` 
-  with `fit` on train and `transform` on test to prevent data leakage.
-- Profit Curve uses an average loan amount; individual `AMT_CREDIT` per applicant 
-  would give a more precise business estimate.
+- **Categorical preprocessing:** LightGBM handles categorical features natively (`category` dtype), so One-Hot Encoding was removed to simplify the pipeline and eliminate data leakage. In a production environment with mixed model types, a `sklearn.pipeline.Pipeline` with `ColumnTransformer` would be used for consistency.
+- Profit Curve uses an average loan amount; individual `AMT_CREDIT` per applicant would give a more precise business estimate.
 - No hyperparameter tuning (Optuna / Grid Search) — planned for v2.
 
   
@@ -67,8 +64,8 @@ The analysis follows a deliberate, defensible sequence:
 
 | Metric | Value |
 |---|---|
-| ROC-AUC (test set) | 0.762 |
-| ROC-AUC (5-fold CV, mean ± std) | 0.7562 ± 0.004 |
+| ROC-AUC (test set) | 0.759 |
+| ROC-AUC (5-fold CV, mean ± std) | 0.7552 ± 0.0037 |
 | Brier Score (uncalibrated) | 0.189 |
 | Brier Score (calibrated, isotonic) | 0.068 |
 | Optimal decision threshold | 18.18% predicted risk |
