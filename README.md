@@ -13,10 +13,10 @@ An end-to-end credit risk analysis and default prediction model built on the Hom
 - Education level is a strong risk signal: default rate ranges from 1.8% (academic degree) to 10.9% (lower secondary education)
 
 **Model:** LightGBM classifier with balanced class weighting, trained on a proper three-way train/validation/test split (early stopping on validation, final evaluation on a held-out test set).
-- **ROC-AUC (test set): 0.762**
+- **ROC-AUC (test set): 0.759**
 
 **Stability check (Cross-Validation):** a single train/test split can produce a misleadingly optimistic or pessimistic score. To confirm the result wasn't an artifact of one particular split, the model was re-evaluated using Stratified 5-Fold Cross-Validation.
-- **Mean ROC-AUC: 0.7562 ± 0.004** across folds — confirms the model's performance is stable, not a product of a lucky split
+- **Mean ROC-AUC: 0.7552 ± 0.0037** across folds — confirms the model's performance is stable, not a product of a lucky split
 
 **Calibration:** raw model probabilities were poorly calibrated (Brier Score = 0.189) as a side effect of class balancing. Applying isotonic regression improved calibration substantially:
 - **Brier Score: 0.189 → 0.068**
